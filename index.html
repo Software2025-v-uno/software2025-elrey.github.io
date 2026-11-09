@@ -6,6 +6,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Supermercado El Rey</title>
+
+  <!-- PWA: instalable en el celular -->
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#4facfe" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="El Rey" />
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+
   <link rel="stylesheet" href="css/style.css" />
 
   <!-- Firebase SDK -->
@@ -511,6 +521,17 @@ document.getElementById('abrirEscanerActualizar').addEventListener('click', () =
     <button id="chat-enviar" style="padding: 5px 10px; background-color: #106e13; color: rgb(0, 0, 0); border: none; border-radius: 5px; cursor: pointer;">Enviar</button>
   </div>
 </div>
+
+<!-- PWA: registrar el service worker para que la app sea instalable y funcione sin conexión -->
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("service-worker.js").catch(function (err) {
+        console.error("No se pudo registrar el service worker:", err);
+      });
+    });
+  }
+</script>
 
 </body>
 
